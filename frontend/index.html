@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Engine Client Framework</title>
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f0f4f8; margin: 0; padding: 20px; color: #333; }
+        .wrapper { max-width: 650px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .input-block { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.95rem; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
+        button { background: #2563eb; color: white; border: none; padding: 11px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; margin-right: 5px; }
+        button:hover { background: #1d4ed8; }
+        .hidden { display: none; }
+        .msg-toast { padding: 12px; margin-bottom: 20px; border-radius: 6px; font-weight: 500; }
+        .msg-ok { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        .msg-err { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+        .item-row { background: #f8fafc; border-left: 5px solid #2563eb; padding: 15px; margin-bottom: 12px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .btn-wipe { background: #dc2626; }
+        .btn-wipe:hover { background: #b91c1c; }
+        .dashboard-banner { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 25px; }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div id="toast" class="msg-toast hidden"></div>
+
+        <div id="authPanel">
+            <h2 style="margin-top: 0;">🔒 Platform Authentication Gateway</h2>
+            <div class="input-block">
+                <label>Email ID</label>
+                <input type="email" id="userEmail" placeholder="user@domain.com">
+            </div>
+            <div class="input-block">
+                <label>Password Account Key</label>
+                <input type="password" id="userPassword" placeholder="••••••••">
+            </div>
+            <div class="input-block">
+                <label>Privilege Authorization Scope (Registration Override)</label>
+                <select id="userRole">
+                    <option value="user">Standard Account (User)</option>
+                    <option value="admin">Global Administrator (Admin)</option>
+                </select>
+            </div>
+            <button id="actionLogin">Login Profile</button>
+            <button id="actionRegister" style="background: #10b981;">Commit Registration</button>
+        </div>
+
+        <div id="dashboardPanel" class="hidden">
+            <div class="dashboard-banner">
+                <div>
+                    <h3 style="margin: 0;">Welcome, <span id="labelUser">User</span>!</h3>
+                    <span style="font-size: 0.85rem; color: #64748b;">Context Group Access: <strong id="labelRole" style="color:#2563eb;">user</strong></span>
+                </div>
+                <button id="actionLogout" class="btn-wipe">Logout Session</button>
+            </div>
+
+            <h4>Create a Documented Task Action</h4>
+            <div class="input-block">
+                <label>Task Objective Heading</label>
+                <input type="text" id="taskTitleField" placeholder="Identify context goals...">
+            </div>
+            <div class="input-block">
+                <label>Context Log Summary</label>
+                <textarea id="taskDescField" rows="2" placeholder="Provide extra workflow descriptions..."></textarea>
+            </div>
+            <button id="actionAddTask">Publish Record</button>
+
+            <h3 style="margin-top: 35px; border-top: 1px solid #e2e8f0; padding-top: 20px;">Live Context Execution Feed</h3>
+            <div id="dataListRender"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
